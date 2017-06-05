@@ -2,11 +2,17 @@
 
 # Using this module in other modules
 
-1. Install module:
+## Purpose
+
+Create an observable that will get triggered when ngOnDestroy is called on the angular 2 component, without having to implement OnDestroy and/or duplicate the same logic over and over.
+
+The takeUntil operator can be used to complete the explicit subscriptions when the component is destroyed. No more need to manually unsubscribe in ngOnDestroy(), or handle a destroy-Subject 
+
+## Install module
 
 `$ npm install ngx-destroy --save`
 
-2. Usage
+## Usage
 
 ```typescript
 @Component({
@@ -31,6 +37,16 @@ export class AaaComponent implements OnInit {
 
 }
 ```
-3. Example
+## Example
 
-https://github.com/fatsu/ngx-destroy-example
+[ngx-destroy-example](https://github.com/fatsu/ngx-destroy-example)
+
+## Further reading/watching:
+
+[Ben Lesh - Don't unsubscribe](https://medium.com/@benlesh/rxjs-dont-unsubscribe-6753ed4fda87)
+
+[André Staltz - Use takeUntil instead of manually unsubscribing](https://egghead.io/lessons/rxjs-use-takeuntil-instead-of-manually-unsubscribing-from-observables)
+
+## Additional thoughts
+
+It would probably more 'Angular' to work with a factory-provider so the destroyed$-observable gets injected... for a later version!   
