@@ -1,10 +1,10 @@
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-# Using this module in other modules
+# ngx-destroy
 
 ## Purpose
 
-Create an observable that will get triggered when ngOnDestroy is called on the angular 2 component, without having to implement OnDestroy and/or duplicate the same logic over and over.
+Create/configure an observable using decorator (@NgDestroy) that will get triggered when ngOnDestroy is called on the angular 2 component, without having to implement OnDestroy and/or duplicate the same logic over and over.
 
 The takeUntil operator can be used to complete the explicit subscriptions when the component is destroyed. No more need to manually unsubscribe in ngOnDestroy(), or handle a destroy-Subject 
 
