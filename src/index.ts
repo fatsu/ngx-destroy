@@ -2,22 +2,41 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 export const NgDestroy = () => (targetPrototype: any, propertyKey: string) => {
 
-  const destroyedSubject = new ReplaySubject<void>(1);
-  const destroyed$ = destroyedSubject.asObservable();
+  const propertyKeySubject = '__' + propertyKey + 'Subject';
+  const propertyKeyObs = '__' + propertyKey;
 
+  // lazy subject creation
+  const subjectGetter = function() {
+    if (!this[propertyKeySubject]) {
+      this[propertyKeySubject] = new ReplaySubject<void>(1);
+    }
+    return this[propertyKeySubject];
+  };
+
+  // lazy subject.asObservable creation
+  const observableGetter = function() {
+    if (!this[propertyKeyObs]) {
+      this[propertyKeyObs] = subjectGetter.apply(this).asObservable();
+    }
+    return this[propertyKeyObs];
+  };
+
+  // property re-definition
   if (delete this[propertyKey]) {
     Object.defineProperty(targetPrototype, propertyKey, {
       configurable: true,
       enumerable: true,
-      value: destroyed$,
+      get: observableGetter,
     });
   }
 
+  // wrap ngOnDestroy
   const originalNgOnDestroy = targetPrototype.ngOnDestroy;
-
   targetPrototype.ngOnDestroy = function(...args: any[]) {
-    destroyedSubject.next(void 0);
-    destroyedSubject.complete();
+    const subject = subjectGetter.apply(this);
+
+    subject.next(void 0);
+    subject.complete();
 
     if (originalNgOnDestroy) {
       return originalNgOnDestroy.apply(this, args);
