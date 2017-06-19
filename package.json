@@ -1,6 +1,6 @@
 {
   "name": "ngx-destroy",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Provide RxJS takeUntil-observable for easy OnDestroy-cleanup",
   "main": "./bundles/ngx-destroy.umd.js",
   "module": "./ngx-destroy.es5.js",
