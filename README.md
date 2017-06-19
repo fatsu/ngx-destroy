@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/fatsu/ngx-destroy.svg?branch=provider)](https://travis-ci.org/fatsu/ngx-destroy)
+[![Build Status](https://travis-ci.org/fatsu/ngx-destroy.svg?branch=master)](https://travis-ci.org/fatsu/ngx-destroy)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 # ngx-destroy
