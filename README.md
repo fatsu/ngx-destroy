@@ -7,7 +7,7 @@
 
 Remove the overhead of manually managing explicit infinite RxJS subscriptions over-and-over by providing and injecting an observable that will get triggered when Angular calls the OnDestroy life-cycle hook.   
    
-The takeUntil operator can be used in combination with this observable to complete explicit subscriptions without having to unsubscribe or handle a destroy-Subject in ngOnDestroy(). 
+The takeUntil operator can be used in combination with this observable to complete subscriptions without having to explicitly unsubscribe or handle a destroy-Subject in ngOnDestroy(). 
 
 ## Install
 
@@ -17,7 +17,7 @@ The takeUntil operator can be used in combination with this observable to comple
 
 Add NgxDestroy$ as a provider on Component level, and inject it where needed.
       
-When the component context is destroyed, Angular will call the OnDestroy hook on the providers and our observable will be triggered.
+When the component context is destroyed, Angular will call the OnDestroy hook on the providers and the observable will be triggered.
 
 The initial version of this lib used a decorator to configure the destroyed$ observable (see demo BbbComponent). This is still supported, but not the prefered way.  
 
